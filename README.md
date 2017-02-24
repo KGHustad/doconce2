@@ -1,5 +1,5 @@
 # doconce2
-Features and goals targeting the next major version of DocOnce
+Features and design goals targeting the next major version of [DocOnce](http://github.com/doconce/doconce)
 
 ## Implementation
 * Full refactoring of the code
@@ -17,7 +17,7 @@ Features and goals targeting the next major version of DocOnce
 
 ## Features
 
-### Mandatory
+### Important
 * Full pgfplots/TikZ support
 * Environments for example, theorem, proof, etc. to attract LaTeX users
 
