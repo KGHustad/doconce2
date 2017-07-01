@@ -98,6 +98,12 @@ Alternatively, it would be possible to do
 
 But `{` and `}` isn't used much elsewhere in DocOnce (except for `label{}` and in LaTeX mathematics).
 
+A third option is:
+* `!ref(fig:sine_curve)`
+* `!cite(knuth97)`
+
+Which is the same as the first with `[` and `]` removed.
+
 ### LaTeX mathematics
 Keep inline syntax.
 
@@ -118,3 +124,20 @@ a = 2
 ```
 
 and likewise for `equation`. Typically there is one LaTeX environment enclosing all of the text block, so this would save two lines.
+
+
+### Code blocks
+
+### Code from file
+* Legacy DocOnce
+    * `@@@CODE prog.py`
+    * Optionally, `envir=lang` can be specified afterwards
+    * Also options for matching start and end of the included code with regular expressions
+
+
+Should get rid of `@@@`. Could do something similar to figure.
+
+### Figures
+```
+FIGURE: [sine_curve, option1=val1, option2=val2] A sine curve  label{fig:sine_curve}
+```
