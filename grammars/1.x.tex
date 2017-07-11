@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{syntax}
+
+\begin{document}
+
+\title{Grammar for DocOnce 1.x}
+\author{Kristian Gregorius Hustad}
+\maketitle
+
+\setlength{\grammarparsep}{10pt plus 1pt minus 1pt} % increase separation between rules
+\setlength{\grammarindent}{12em} % increase separation between LHS/RHS
+\begin{grammar}
+<document>      ::= [header] <body>
+
+<header>        ::= [<title line>] [<author line>] [<date line>]
+
+<title line>    ::= `TITLE:' \lit*{SPACE} <title> \lit*{EOL}
+<title>         ::= \lit*{poor-text-with-url}
+
+<author line>   ::= `AUTHOR:' \lit*{SPACE} <name>
+                    [\lit*{SPACE} <author email>]
+                    [\lit*{SPACE} <author institutions>]
+                    \lit*{EOL}
+
+<author email>  ::= `Email:' \lit*{SPACE} \lit*{email-address}
+
+<author institutions>   ::= <author institutions> \lit*{SPACE} `&' \lit*{SPACE} <institution>
+                        \alt <institution>
+
+<institution>  ::=  \lit*{poor-text-with-url} (may not contain an unescaped `&')
+
+<date line> ::= `DATE:' \lit*{SPACE} \lit*{poor-text}
+
+<body> ::= TODO
+\end{grammar}
+\end{document}
