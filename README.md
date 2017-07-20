@@ -1,6 +1,9 @@
 # doconce2
 Features and design goals targeting the next major version of [DocOnce](http://github.com/doconce/doconce)
 
+## General
+* Change default file extension from `.do.txt` to `.doconce`
+
 ## Implementation
 * Full refactoring of the code
   * Should make use of packages and directories
@@ -16,6 +19,8 @@ Features and design goals targeting the next major version of [DocOnce](http://g
 
 
 ## Features
+* Revised syntax
+
 
 ### Important
 * Full pgfplots/TikZ support
