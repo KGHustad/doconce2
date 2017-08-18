@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{syntax}
+\usepackage{color}
 
 \begin{document}
 
@@ -8,15 +9,24 @@
 \author{Kristian Gregorius Hustad}
 \maketitle
 
+{\bf \color{red} Work in progress.}
+
 \setlength{\grammarparsep}{10pt plus 1pt minus 1pt} % increase separation between rules
 \setlength{\grammarindent}{12em} % increase separation between LHS/RHS
 \begin{grammar}
-<document>      ::= [header] <body>
+<document>      ::= [<header>] \\
+                    <body>
 
-<header>        ::= [<title line>] [<author line>] [<date line>]
+<header>        ::= [<title line>]
+                    [<author lines>]
+                    [<date line>]
 
 <title line>    ::= `TITLE:' \lit*{SPACE} <title> \lit*{EOL}
+
 <title>         ::= \lit*{poor-text-with-url}
+
+<author lines>  ::= <author lines> <author line>
+                \alt <author line>
 
 <author line>   ::= `AUTHOR:' \lit*{SPACE} <name>
                     [\lit*{SPACE} <author email>]
@@ -30,8 +40,29 @@
 
 <institution>  ::=  \lit*{poor-text-with-url} (may not contain an unescaped `&')
 
-<date line> ::= `DATE:' \lit*{SPACE} \lit*{poor-text}
+<date line> ::= `DATE:' \lit*{SPACE} <text-richness-0> \lit*{EOL}
 
-<body> ::= TODO
+<body> ::= {\color{red} TODO}
+
+<text-richness-0> ::= \lit*{PLAINTEXT}
+
+% bold, italic
+<text-richness-1> ::= <text-richness-0>
+                  \alt <text-richness-1> <text-richness-1>
+                  \alt <text-bold>
+                  \alt <text-italic>
+
+% bold, italic, link
+<text-richness-2> ::= <text-richness-1>
+                  \alt <text-richness-2> <text-richness-2>
+                  \alt <text-link>
+
+<code-block> ::= \lit{!bc} [<code-envir>] \lit*{EOL} \\
+                 \lit*{CODE-LINES} \\
+                 \lit{!ec} \lit*{EOL}
+
+<tex-block> ::= \lit{!bt} \lit*{EOL} \\
+                \lit*{TEX-LINES} \\
+                \lit{!et} \lit*{EOL}
 \end{grammar}
 \end{document}
